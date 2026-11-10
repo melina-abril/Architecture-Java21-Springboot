@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  error:
+    # Los errores los arma GlobalExceptionHandler como ProblemDetail; nunca se expone el stacktrace.
+    include-stacktrace: never
+
+spring:
+  application:
+    name: app
+  jackson:
+    # Jackson 3 (Spring Boot 4, paquete tools.jackson) ya escribe Instant / LocalDate en ISO-8601: no hace falta configurarlo.
+    time-zone: America/Argentina/Buenos_Aires
+
+app:
+  # Orígenes del frontend que pueden llamar a la API (CorsConfig), como patrones: en desarrollo, cualquier puerto local.
+  cors:
+    allowed-origin-patterns: ${FRONT_URL:http://localhost:*}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
