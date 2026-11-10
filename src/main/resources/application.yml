@@ -15,6 +15,15 @@ app:
   # Orígenes del frontend que pueden llamar a la API (CorsConfig), como patrones: en desarrollo, cualquier puerto local.
   cors:
     allowed-origin-patterns: ${FRONT_URL:http://localhost:*}
+  security:
+    # Secreto HS256 de los JWT de sesión (al menos 32 bytes). En producción, siempre por variable de entorno.
+    jwt-secret: ${JWT_SECRET:dev-secret-cambiar-en-produccion-0123456789abcdef}
+    session-cookie: app_session
+    session-hours: 8
+    # true en producción (HTTPS). En desarrollo el front y el backend corren por http://localhost.
+    cookie-secure: ${COOKIE_SECURE:false}
+    # Contraseña de TODOS los usuarios de prueba (demo-users.json): la misma que muestra el login del front en modo mock.
+    demo-password: ${DEMO_PASSWORD:Demo1234!}
 
 management:
   endpoints:

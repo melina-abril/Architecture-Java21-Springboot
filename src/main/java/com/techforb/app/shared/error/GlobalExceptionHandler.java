@@ -36,6 +36,11 @@ public class GlobalExceptionHandler {
         return problem(HttpStatus.UNPROCESSABLE_ENTITY, exception.getCode(), exception.getMessage(), Map.of());
     }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ProblemDetail> unauthorized(UnauthorizedException exception) {
+        return problem(HttpStatus.UNAUTHORIZED, exception.getCode(), exception.getMessage(), Map.of());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ProblemDetail> validation(MethodArgumentNotValidException exception) {
         Map<String, List<String>> errors = new LinkedHashMap<>();
