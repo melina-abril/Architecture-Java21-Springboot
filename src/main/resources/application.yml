@@ -16,8 +16,9 @@ app:
   cors:
     allowed-origin-patterns: ${FRONT_URL:http://localhost:*}
   security:
-    # Secreto HS256 de los JWT de sesión (al menos 32 bytes). En producción, siempre por variable de entorno.
-    jwt-secret: ${JWT_SECRET:dev-secret-cambiar-en-produccion-0123456789abcdef}
+    # Secreto HS256 de los JWT de sesión (al menos 32 bytes), SIEMPRE por variable de entorno. Sin JWT_SECRET: uno al
+    # azar por arranque en desarrollo; con COOKIE_SECURE=true (producción) la aplicación no arranca.
+    jwt-secret: ${JWT_SECRET:}
     session-cookie: app_session
     session-hours: 8
     # true en producción (HTTPS). En desarrollo el front y el backend corren por http://localhost.
